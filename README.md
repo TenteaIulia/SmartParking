@@ -45,11 +45,10 @@ Adresa repository-ului:
 
 # Cerințe software
 
-- Python 3.11 sau o versiune mai nouă;
+- Visual Studio Code;
 - MySQL Server;
 - Arduino IDE 2.x;
-- ESP32 Board Package pentru Arduino IDE;
-- Visual Studio Code (opțional, pentru dezvoltare).
+- ESP32 Board Package pentru Arduino IDE.
 
 ---
 
