@@ -61,12 +61,9 @@ Nu sunt incluse fișiere binare compilate (.bin, .hex, .elf, .pyc etc.).
 Adresa repository-ului:
 
 ```
-https://gitlab.upt.ro/..................
+https://github.com/TenteaIulia/SmartParking
+
 ```
-
-(se completează după încărcarea proiectului)
-
----
 
 # Cerințe hardware
 
@@ -98,7 +95,7 @@ https://gitlab.upt.ro/..................
 ## 1. Clonarea repository-ului
 
 ```bash
-git clone https://gitlab.upt.ro/............
+git clone https://github.com/TenteaIulia/SmartParking
 ```
 
 ## 2. Crearea mediului virtual
