@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Simulare Cameră{% endblock %}
+
+{% block content %}
+<div class="camera-simulation-page">
+
+    <div class="camera-header">
+        <div>
+            <h1>Simulare Cameră</h1>
+            <p>
+                Testează procesul de acces folosind o imagine cu număr de înmatriculare.
+            </p>
+        </div>
+    </div>
+
+    <div class="camera-layout">
+
+        <div class="camera-card">
+            <h2>Formular simulare</h2>
+            <p class="card-subtitle">
+                Încarcă imaginea și selectează parametrii pentru simulare.
+            </p>
+
+            <form
+                action="{{ url_for('api_camera_barrier') }}"
+                method="post"
+                enctype="multipart/form-data"
+            >
+
+                <div class="form-group">
+                    <label>Imagine număr de înmatriculare</label>
+                    <input
+                        type="file"
+                        name="image"
+                        class="input-file"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Zonă de parcare</label>
+                    <select name="zone_id">
+                        <option value="1">Zona A</option>
+                        <option value="2">Zona B</option>
+                        <option value="3">Zona C</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Direcție de deplasare</label>
+                    <select name="direction">
+                        <option value="entry">Intrare</option>
+                        <option value="exit">Ieșire</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="simulate-btn">
+                    Rulează simularea
+                </button>
+
+                <button type="reset" class="reset-btn">
+                    Resetează formularul
+                </button>
+
+            </form>
+        </div>
+
+        <div class="camera-info-card">
+            <h2>Despre simulare</h2>
+
+            <p>
+                Această funcționalitate permite testarea procesului de acces
+                fără utilizarea directă a dispozitivului hardware.
+            </p>
+
+            <div class="simulation-step">
+                <span>1</span>
+                <div>
+                    <h3>Detectare OCR</h3>
+                    <p>Sistemul extrage automat numărul de înmatriculare din imagine.</p>
+                </div>
+            </div>
+
+            <div class="simulation-step">
+                <span>2</span>
+                <div>
+                    <h3>Verificare sesiune</h3>
+                    <p>Aplicația verifică dacă vehiculul are o sesiune activă.</p>
+                </div>
+            </div>
+
+            <div class="simulation-step">
+                <span>3</span>
+                <div>
+                    <h3>Decizie acces</h3>
+                    <p>Se execută procedura de intrare sau ieșire, în funcție de direcție.</p>
+                </div>
+            </div>
+
+           
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

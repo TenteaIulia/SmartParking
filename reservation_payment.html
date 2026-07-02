@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Plată rezervare{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Plată rezervare</h2>
+
+        <p class="subtitle">
+            Confirmă plata pentru rezervarea ta.
+        </p>
+
+        <div class="cost-box">
+
+            <p><strong>Zonă:</strong> {{ reservation.zone_name }}</p>
+
+            <p><strong>Număr auto:</strong> {{ reservation.license_plate }}</p>
+
+            <p><strong>Început:</strong> {{ reservation.reservation_start }}</p>
+
+            <p><strong>Final:</strong> {{ reservation.reservation_end }}</p>
+
+            <hr style="margin:15px 0;">
+
+            <h3>
+                Total de plată:
+                {{ reservation.reservation_cost }} lei
+            </h3>
+
+        </div>
+
+        <form method="POST" class="auth-form">
+
+            <label>Metodă de plată</label>
+
+            <select name="payment_method" required>
+
+                <option value="card_test">
+                     Card bancar
+                </option>
+
+                <option value="cash_test">
+                     Cash
+                </option>
+
+                <option value="revolut_test">
+                    Revolut
+                </option>
+
+            </select>
+
+            <button type="submit">
+                Plătește rezervarea
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+<script>
+
+    const options = document.querySelectorAll(".payment-option");
+    const hiddenInput = document.getElementById("payment_method");
+
+    options.forEach(option => {
+
+        option.addEventListener("click", () => {
+
+            options.forEach(o => o.classList.remove("active"));
+
+            option.classList.add("active");
+
+            hiddenInput.value = option.dataset.method;
+
+        });
+
+    });
+
+</script>
+
+{% endblock %}

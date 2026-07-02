@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Ieșire manuală{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+    <div class="auth-card">
+
+        <h2>Ieșire manuală</h2>
+
+        <p class="subtitle">
+            Folosește această opțiune dacă OCR-ul nu recunoaște numărul la ieșire.
+        </p>
+
+        <form method="POST" class="payment-form">
+
+            <input
+                type="text"
+                name="license_plate"
+                placeholder="Ex: CS12ABC"
+                class="modern-input"
+                required
+                style="text-transform: uppercase;"
+            >
+
+            <button type="submit">
+                Procesează ieșirea
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

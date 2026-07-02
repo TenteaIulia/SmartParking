@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Plată sesiune{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Plată sesiune parcare</h2>
+
+        <p class="subtitle">
+            Confirmă plata pentru a finaliza sesiunea și a deschide bariera.
+        </p>
+
+        <div class="cost-box">
+
+            <p><strong>Zonă:</strong> {{ session_data.zone_name }}</p>
+
+            <p><strong>Număr auto:</strong> {{ session_data.license_plate }}</p>
+
+            <p><strong>Ora intrării:</strong> {{ session_data.start_time }}</p>
+
+            <p><strong>Ora ieșirii:</strong> {{ session_data.end_time }}</p>
+
+            <hr style="margin:15px 0;">
+
+            <h3>
+                Total de plată:
+                {{ session_data.total_cost }} lei
+            </h3>
+        </div>
+        <form method="POST" class="payment-form">
+            <input type="hidden" name="payment_method" id="payment_method" value="card_test">
+            <div class="payment-methods">
+
+                <div class="payment-option active" data-method="card_test">
+                    💳
+                    <span>Card</span>
+                </div>
+                <div class="payment-option" data-method="cash_test">
+                    💵
+                    <span>Cash</span>
+                </div>
+                <div class="payment-option" data-method="revolut_test">
+                    🟣
+                    <span>Revolut</span>
+                </div>
+            </div>
+
+            <button type="submit">
+                Plătește și deschide bariera
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+    const options = document.querySelectorAll(".payment-option");
+    const hiddenInput = document.getElementById("payment_method");
+
+    options.forEach(option => {
+        option.addEventListener("click", () => {
+            options.forEach(o => o.classList.remove("active"));
+            option.classList.add("active");
+            hiddenInput.value = option.dataset.method;
+        });
+    });
+</script>
+
+{% endblock %}

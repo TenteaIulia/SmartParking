@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Plăți active{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Plăți active</h2>
+
+        <p class="subtitle">
+            Finalizează plățile pentru sesiunile active înainte de ieșirea din parcare.
+        </p>
+        
+        <form method="POST" class="payment-search-form">
+
+            <label for="license_plate">
+                Caută o sesiune după numărul de înmatriculare
+            </label>
+
+            <input
+                type="text"
+                id="license_plate"
+                name="license_plate"
+                placeholder="Ex: SB12ABC"
+                required
+            >
+
+            <button type="submit">
+                Caută plată
+            </button>
+
+        </form>
+
+        {% if unpaid_sessions %}
+
+            {% for session_data in unpaid_sessions %}
+
+                <div class="cost-box" style="margin-bottom:25px;">
+
+                    <p>
+                        <strong>Zonă:</strong>
+                        {{ session_data.zone_name }}
+                    </p>
+
+                    <p>
+                        <strong>Număr auto:</strong>
+                        {{ session_data.license_plate }}
+                    </p>
+
+                    <p>
+                        <strong>Ora intrării:</strong>
+                        {{ session_data.start_time }}
+                    </p>
+
+                    <hr style="margin:15px 0;">
+
+                    <h3>
+                        Total de plată:
+                        {{ session_data.total_cost }} lei
+                    </h3>
+
+                    <form
+                        method="GET"
+                        action="{{ url_for('session_payment', session_id=session_data.id) }}"
+                        class="payment-form"
+                        style="margin-top:20px;"
+                    >
+
+                        <button type="submit">
+                            Plătește sesiunea
+                        </button>
+
+                    </form>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="cost-box">
+
+                <h3>Nu există plăți active.</h3>
+
+                <p>
+                    Toate sesiunile sunt deja achitate.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
